@@ -1,0 +1,35 @@
+Here I will explain how I created the MarketStoreSystem and how to run it.
+
+The program can be run as a console application.
+
+-To model the entities I have created an abstract class Card which implements an ICard interface with members string Owner, decimal Turnover and decimal DiscountRate.
+
+-I have added some validation to the Owner propery making sure it cannot be created with and empty or null value, also the Turnover cannot be less than 0.
+
+-The error constants file contains string messages for all the validation exceptions which might occur.
+
+-Upon creation every card which inherits the abstract class Card will have it's Owner, Turnover and DiscountRate(it is 0 by default and it will change depending on the Turnover and card type).
+
+-The abstract class Card also has an abstract method CalculateDiscountRate which will be used in the child classes  to determine the DiscountRate for them.
+
+-After e card of certain type is created it calls the CalculateDiscountRate method and depending on the turnover and the card type the DiscountRate changes.
+
+-Each card passes a default DiscountRate to the base constructor.
+
+-In the card classes we can see that there are constants which help us get an idea what we are checking and what each number means. Also this would be helpful in cases where we need to reuse a certain value and if future changes should occur we would only need to change the constant.
+
+-The PayDesk class is a static class which has only one static method CalculatePurchaseInfo
+
+-The CalculatePurchaseInfo method takes a Card and a decimal number as arguments.
+
+-We check if the purchaseValue is less than 0 and if so we throw an exception.
+
+-Then we calculate the discountValue and the new totalPrice.
+
+-To print the information we use a StringBuilder to append each line of information and we use the Console.WriteLine method to print it on the console.
+
+-The Program file is where the cards are instantiated with a Owner and a Turnover.
+
+-Using the PayDesk.CalculatePurchaseInfo() static method we can print the Purchase information for a specific Card and Purchase value.
+
+-Should any exceptions occur we have a try catch block to handle them.
